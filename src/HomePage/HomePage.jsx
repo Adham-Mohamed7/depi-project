@@ -6,16 +6,16 @@ import Carousel from './Carousel'
 const Home = () => {
   return (
 
-    <div className=''>
+    <div >
       <div>
         <Nav/>
-        </div>
-        <div> 
+      </div>
+       <div> 
         <Carousel/>
-        </div>
-        <div>
+      </div>
+      <div>
         <Cards/>
-        </div>
+      </div>
     </div> 
     
     
