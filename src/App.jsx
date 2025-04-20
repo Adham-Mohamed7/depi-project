@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import AdminLayout from './AdminLayout';
-import SignUp from './SignUp';
-import Login from './Login';
+import AdminLayout from './DashboardDesignAndView/AdminLayout';
+import SignUp from './form/SignUp';
+import Login from './form/Login';
 import Home from './Home';
 import HomePage from "./HomePage/HomePage";
 import Product from './Product';
