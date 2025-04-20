@@ -54,6 +54,204 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.contact-section {
+  padding: 50px 0;
+  background-color: #f8f9fa;
+}
+
+.wrapper {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.contact-wrap {
+  padding: 40px;
+}
+
+.contact-wrap h3 {
+  color: #343a40;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #007bff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+textarea.form-control {
+  min-height: 150px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: black;
+  border-color: #9494f5;
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 4px;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #d3d3ff;
+  border-color: #d3d3ff;
+}
+
+.info-wrap {
+  background-color: #9999f6;
+  color: black;
+  padding: 40px;
+  border-radius: 0 8px 8px 0;
+}
+
+.info-wrap h3 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.info-wrap p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 30px;
+}
+
+.dbox {
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dbox .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.dbox .text {
+  margin-left: 20px;
+}
+
+.dbox span {
+  font-weight: 600;
+  color: #fff;
+}
+
+.dbox a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dbox a:hover {
+  text-decoration: underline;
+}
+
+.map-section .store-info h3 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-top: 0;
+}
+
+.map-section .store-info p {
+  color: #555;
+  font-size: 1rem;
+}
+
+.footer-section {
+  color: white !important;
+  background-color: #9999f6 !important;
+  margin-top: 3em;
+}
+
+.footer-section h5 {
+  color: black;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid white;
+  padding-bottom: 0.5rem;
+}
+
+.footer-section ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.7rem;
+}
+
+.footer-section ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: black;
+}
+
+.footer-section p {
+  line-height: 1.6;
+}
+
+.footer-section .social-icons a {
+  font-size: 1.5rem;
+  margin-right: 10px;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer-section .social-icons a:hover {
+  color: #9999f6;
+}
+
+.footer-section .input-group .form-control {
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.footer-section .input-group .btn {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -64,5 +262,11 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+  .col-md-6 {
+    margin-bottom: 30px;
+  }
+  .info-wrap {
+    border-radius: 8px;
   }
 }
