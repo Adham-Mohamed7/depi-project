@@ -12,8 +12,8 @@ import Cart from './Cart';
 
 function App() {
   return (
-    <div>
-    <HomePage/>
+    
+    
 
     <Routes>
       <Route path="/" element={<Navigate to="/login" />} />
@@ -23,7 +23,7 @@ function App() {
       <Route path="/" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
     </Routes>
-    </div>
+    
   );
 }
 
