@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
+import HomePage from "./HomePage"
 import SignUp from "./form/SignUp";
 import Login from "./form/Login";
 import Home from "./Home";
@@ -11,7 +11,7 @@ const App = () => {
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/Home" element={<Home />} />
     </Routes>
   );
 };
