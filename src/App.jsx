@@ -7,8 +7,8 @@ import HomePage from "./HomePage/HomePage"
 
 function App() {
   return (
-    <div>
-    <HomePage/>
+    
+    
 
     <Routes>
       <Route path="/" element={<Navigate to="/login" />} />
@@ -16,7 +16,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
     </Routes>
-    </div>
+    
   );
 }
 
