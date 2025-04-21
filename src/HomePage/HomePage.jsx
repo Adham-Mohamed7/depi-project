@@ -2,6 +2,8 @@ import React from 'react'
 import Nav from '../Nav'
 import Cards from './Cards'
 import Carousel from './Carousel'
+import ProductsOverview from "./ProductsOverview"
+import Footer from "./Footer"
 
 const Home = () => {
   return (
@@ -15,6 +17,10 @@ const Home = () => {
       </div>
       <div>
         <Cards/>
+      </div>
+      <ProductsOverview/>
+      <div>
+        <Footer/>
       </div>
     </div> 
     
