@@ -4,8 +4,8 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import Home from "./Home";
 //import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Product from './Product';
-import Cart from './Cart';
+import Product from './Shopping/Product';
+import Cart from './Shopping/Cart';
 
 function App() {
   return (
