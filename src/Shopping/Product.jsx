@@ -7,7 +7,7 @@ const Product = ({ cart, addToCart }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
-    fetch('/db.json')
+    fetch("http://localhost:3001/products")
       .then((res) => res.json())
       .then((data) => setProducts(data.products))
       .catch((err) => console.error('Error loading products:', err));
