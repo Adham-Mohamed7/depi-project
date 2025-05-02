@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
-const DashboardWithCart = () => {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isCartOpen, setIsCartOpen] = useState(false);
+// const DashboardWithCart = () => {
+//     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+//     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
+//     const toggleMobileMenu = () => {
+//         setIsMobileMenuOpen(!isMobileMenuOpen);
+//     };
 
-    const toggleCart = () => {
-        setIsCartOpen(!isCartOpen);
-    };
+//     const toggleCart = () => {
+//         setIsCartOpen(!isCartOpen);
+//     };
 
-    return (
+//     return (
     
       <div className={`bg-gray-100 min-h-screen flex flex-col ${isCartOpen ? 'lg:mr-96' : ''} transition-margin duration-300 ease-in-out`}>
 
@@ -326,6 +326,6 @@ const DashboardWithCart = () => {
 
 
                            
-              );
-              };
-export default  DashboardWithCart;
+//               );
+//               };
+// export default  DashboardWithCart;
