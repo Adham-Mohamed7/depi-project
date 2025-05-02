@@ -35,7 +35,7 @@ const SignUp = () => {
     if (!isFormValid()) return;
 
     try {
-      const serverResponse = await axios.get("http://localhost:3000/users");
+      const serverResponse = await axios.get("https://adham-mohamed7.github.io/react-users-db/db.json");
       const doesEmailAlreadyExist = serverResponse.data.some(
         (user) => user.email === emailAddress
       );
