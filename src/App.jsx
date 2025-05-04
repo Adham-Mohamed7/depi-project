@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./form/SignUp";
 import Login from "./form/Login";
 import Home from "./Home";
+import HomePage from "./HomePage/HomePage"
 
 //import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Product from './Shopping/Product';
@@ -16,7 +17,7 @@ const App = () => {
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/Home" element={<Home />} />
+      <Route path="/HomePage" element={<HomePage />} />
     </Routes>
   );
 };

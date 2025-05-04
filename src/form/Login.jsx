@@ -11,15 +11,16 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get("https://adham-mohamed7.github.io/react-users-db/db.json");
-      const users = response.data;
+
+      const response = await axios.get("https://run.mocky.io/v3/5b1bc361-e93e-42f8-aa62-1143281fbe39");
+      const users = response.data.users;
 
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
 
       if (foundUser) {
-        navigate("/home");
+        navigate("/homePage");
       } else {
         setErrorMessage("Invalid email or password. Please try again.");
       }
