@@ -1,31 +1,47 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const Product = ({ cart, addToCart }) => {
+const Product = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
-  const [quickViewProduct, setQuickViewProduct] = useState(null);
-  useEffect(() => {
-    fetch('https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011')
-      .then(res => res.json())
-      .then(data => setProducts(data.products))
-      .catch(err => console.error('Error loading products:', err));
-  }, []);
-  useEffect(() => {
-    const savedCart = localStorage.getItem('cart');
-    if (savedCart) setCart(JSON.parse(savedCart));
-  }, []);
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [cart]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
-
-  useEffect(() => {
-    fetch("http://localhost:3001/products")
+  
+  useEffect(() => { 
+    fetch("https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011")
       .then((res) => res.json())
       .then((data) => setProducts(data.products))
       .catch((err) => console.error('Error loading products:', err));
   }, []);
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) setCart(JSON.parse(savedCart));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  // إضافة منتج إلى سلة التسوق
+  const handleAddToCart = (product) => {
+    const existingItem = cart.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      // إذا كان المنتح موجودًا بالفعل، قم بزيادة الكمية
+      setCart(prevCart => 
+        prevCart.map(item => 
+          item.id === product.id 
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      // إضافة منتج جديد إلى السلة
+      setCart(prevCart => [...prevCart, { ...product, quantity: 1 }]);
+    }
+  };
 
   const openQuickView = (product) => {
     setSelectedProduct(product);
@@ -75,7 +91,7 @@ const Product = ({ cart, addToCart }) => {
                 <h3 className="font-bold text-lg text-gray-800 mb-1">{product.title}</h3>
                 <p className="text-[#D3D3FF] font-bold mb-2">${product.price.toFixed(2)}</p>
                 <button
-                  onClick={() => addToCart(product)}
+                  onClick={() => handleAddToCart(product)}
                   className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors"
                 >
                   Add to Cart
@@ -104,7 +120,7 @@ const Product = ({ cart, addToCart }) => {
               <div className="mt-4">
                 <button
                   onClick={() => {
-                    addToCart(selectedProduct);
+                    handleAddToCart(selectedProduct);
                     closeQuickView();
                   }}
                   className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors"

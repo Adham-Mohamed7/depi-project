@@ -11,12 +11,9 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-<<<<<<< HEAD
-      const response = await axios.get("https://pointy-flame-methane.glitch.me/db.json");
-=======
 
-      const response = await axios.get("https://run.mocky.io/v3/5b1bc361-e93e-42f8-aa62-1143281fbe39");
->>>>>>> 98cb316956baee65bf54f9d931265debde6a27cf
+      const response = await axios.get("https://pointy-flame-methane.glitch.me/db.json");
+  
       const users = response.data.users;
 
       const foundUser = users.find(
