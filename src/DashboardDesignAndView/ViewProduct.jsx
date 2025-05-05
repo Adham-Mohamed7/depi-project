@@ -1,78 +1,56 @@
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Typography,
-  Button,
-  Spinner,
-  Alert
-} from "@material-tailwind/react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import DataTable from "./DataTable";
+import { Spinner, Alert } from "@material-tailwind/react";
 
 const ViewProduct = () => {
-  const navigate = useNavigate();
-  const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const getProductDetails = async () => {
+  const fetchProducts = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3001/products/${productId}`);
-      if (!data) throw new Error('Product not found');
-      setProduct(data);
+      setLoading(true);
+      const { data } = await axios.get(
+        "https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011"
+      );
+
+      if (data && Array.isArray(data.products)) {
+        setProducts(data.products);
+      } else {
+        console.error("API response format is incorrect:", data);
+        setError("Products data isn't correct");
+      }
     } catch (err) {
-      setError(err.message || 'Failed to load product');
+      console.error("Error fetching products:", err);
+      setError(err.message || "Error in Loading Data");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    getProductDetails();
-  }, [productId]);
+    fetchProducts();
+  }, []);
 
-  if (loading) return <Spinner className="h-12 w-12 mx-auto" />;
-  if (error) return <Alert color="red">{error}</Alert>;
+  if (loading) return <Spinner className="h-12 w-12 mx-auto mt-10" />;
+  if (error)
+    return (
+      <Alert color="red" className="mt-4">
+        {error}
+      </Alert>
+    );
+
+  console.log("Products data:", products);
 
   return (
-    <div className="flex justify-center p-8">
-      <Card className="w-96">
-        <CardHeader color="blue-gray" className="relative h-56">
-          <img
-            src={product.image}
-            alt={product.title}
-            className="h-full w-full object-cover"
-            onError={(e) => {
-              e.target.src = "https://via.placeholder.com/300";
-            }}
-          />
-        </CardHeader>
-        <CardBody>
-          <Typography variant="h5" color="blue-gray" className="mb-2">
-            {product.title}
-          </Typography>
-          <Typography className="text-blue-600 font-bold text-lg">
-            ${product.price}
-          </Typography>
-          <Typography className="mt-3">
-            {product.description}
-          </Typography>
-        </CardBody>
-        <CardFooter className="pt-0">
-          <Button 
-            style={{ backgroundColor: '#9370db' }}
-            onClick={() => navigate(-1)} 
-            fullWidth
-            className="hover:bg-[#8360cb] text-white"
-          >
-            Back to Dashboard
-          </Button>
-        </CardFooter>
-      </Card>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6">Products menu</h1>
+      {products.length > 0 ? (
+        <DataTable products={products} />
+      ) : (
+        <Alert color="blue">No Product To Show</Alert>
+      )}
     </div>
   );
 };

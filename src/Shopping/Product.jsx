@@ -6,7 +6,7 @@ const Product = () => {
   const [cart, setCart] = useState([]);
   const [quickViewProduct, setQuickViewProduct] = useState(null);
   useEffect(() => {
-    fetch('/db.json')
+    fetch('https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011')
       .then(res => res.json())
       .then(data => setProducts(data.products))
       .catch(err => console.error('Error loading products:', err));
