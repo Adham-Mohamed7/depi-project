@@ -20,13 +20,6 @@ const Product = ({ cart, addToCart }) => {
   }, [cart]);
 
 
-  useEffect(() => {
-    fetch("http://localhost:3001/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products))
-      .catch((err) => console.error('Error loading products:', err));
-  }, []);
-
   const openQuickView = (product) => {
     setSelectedProduct(product);
     setIsQuickViewOpen(true);
