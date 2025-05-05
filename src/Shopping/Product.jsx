@@ -3,8 +3,22 @@ import { Link } from 'react-router-dom';
 
 const Product = ({ cart, addToCart }) => {
   const [products, setProducts] = useState([]);
-  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
+  useEffect(() => {
+    fetch('https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011')
+      .then(res => res.json())
+      .then(data => setProducts(data.products))
+      .catch(err => console.error('Error loading products:', err));
+  }, []);
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) setCart(JSON.parse(savedCart));
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
 
   useEffect(() => {
     fetch("http://localhost:3001/products")

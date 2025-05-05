@@ -2,23 +2,24 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import SignUp from "./form/SignUp";
 import Login from "./form/Login";
-import Home from "./Home";
 import HomePage from "./HomePage/HomePage"
-
-//import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Product from './Shopping/Product';
 import Cart from './Shopping/Cart';
+import DashBoard from './DashboardDesignAndView/DashBoard'
 
 
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/HomePage" element={<HomePage />} />
-    </Routes>
+  <Routes>
+    <Route path="/" element={<Navigate to="/login" />} />
+    <Route path="/sign-up" element={<SignUp />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/HomePage" element={<HomePage />} />
+    <Route path="/Product" element={<Product/>}/>
+    <Route path="/DashBoard" element={<DashBoard/>}/>
+   </Routes>
+    
   );
 };
 

@@ -4,6 +4,9 @@ import Cards from './Cards'
 import Carousel from './Carousel'
 import ProductsOverview from "./ProductsOverview"
 import Footer from "./Footer"
+import { Route,Routes } from 'react-router-dom'
+import Product from '../Shopping/Product'
+
 
 
 const Home = () => {
@@ -11,7 +14,7 @@ const Home = () => {
 
     <div >
       <div>
-        <Nav/>
+        <Nav/>   
       </div>
        <div> 
         <Carousel/>
