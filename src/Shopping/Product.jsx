@@ -7,8 +7,7 @@ const Product = ({ addToCart }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
 
-  
-  useEffect(() => { 
+  useEffect(() => {
     fetch("https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011")
       .then((res) => res.json())
       .then((data) => setProducts(data.products))
@@ -24,12 +23,10 @@ const Product = ({ addToCart }) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  // إضافة منتج إلى سلة التسوق
   const handleAddToCart = (product) => {
     const existingItem = cart.find(item => item.id === product.id);
     
     if (existingItem) {
-      // إذا كان المنتح موجودًا بالفعل، قم بزيادة الكمية
       setCart(prevCart => 
         prevCart.map(item => 
           item.id === product.id 
@@ -38,7 +35,6 @@ const Product = ({ addToCart }) => {
         )
       );
     } else {
-      // إضافة منتج جديد إلى السلة
       setCart(prevCart => [...prevCart, { ...product, quantity: 1 }]);
     }
   };
