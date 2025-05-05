@@ -12,7 +12,11 @@ const Login = () => {
   const handleLogin = async () => {
     try {
 
+
       const response = await axios.get("https://pointy-flame-methane.glitch.me/db.json");
+ 
+      const users = response.data.users;
+  
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
