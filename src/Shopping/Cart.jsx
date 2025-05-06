@@ -41,7 +41,7 @@ const Cart = ({ cart, setCart }) => {
 
   const handleCheckout = () => {
     setCart([]);
-    navigate('/HomePage'); 
+    navigate('/HomePage');
   };
 
   return (
