@@ -10,7 +10,7 @@ const ProductsOverview = () => {
   const [productOverview, setProductOverview] = useState([]);
 
   const getProductOver = () => {
-    fetch("/db.json")
+    fetch("https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011")
       .then((res) => res.json())
       .then((data) => {
         setProductOverview(data.products);  
