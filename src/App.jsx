@@ -4,6 +4,7 @@ import SignUp from './form/SignUp';
 import Login from './form/Login';
 import HomePage from './HomePage/HomePage';
 import DashBoard from './DashboardDesignAndView/DashBoard';
+import Shop from './Shopping/Shop'; 
 import Product from './Shopping/Product';
 import Cart from './Shopping/Cart'; 
 
