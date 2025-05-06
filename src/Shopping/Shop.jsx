@@ -1,4 +1,3 @@
-import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Product from './Product';
 import Cart from './Cart';
@@ -17,7 +16,7 @@ const Shop = () => {
 
   const removeFromCart = (id) => setCart((prev) => prev.filter((p) => p.id !== id));
 
- const updateQuantity = (id, quantity) => {
+  const updateQuantity = (id, quantity) => {
     if (quantity < 1) return;
     setCart((prev) => prev.map((p) => (p.id === id ? { ...p, quantity } : p)));
   };
@@ -25,13 +24,10 @@ const Shop = () => {
   const clearCart = () => setCart([]);
 
   return (
-    <Routes>
-      <Route path="/" element={<Product cart={cart} addToCart={addToCart} />} />
-      <Route
-        path="/cart"
-        element={<Cart cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} clearCart={clearCart} />}
-      />
-    </Routes>
+    <div>
+      <Product cart={cart} addToCart={addToCart} />
+      <Cart cart={cart} removeFromCart={removeFromCart} updateQuantity={updateQuantity} clearCart={clearCart} />
+    </div>
   );
 };
 
