@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = ({ cart, setCart }) => {
   const navigate = useNavigate();
-
   const cartItems = cart.reduce((acc, product) => {
     const existingItem = acc.find(item => item.id === product.id);
     if (existingItem) {
@@ -19,7 +18,6 @@ const Cart = ({ cart, setCart }) => {
   }, []);
 
   const total = cartItems.reduce((acc, item) => acc + item.totalPrice, 0);
-
   const removeSingleItem = (product) => {
     const index = cart.findIndex(item => item.id === product.id);
     if (index !== -1) {
@@ -28,9 +26,11 @@ const Cart = ({ cart, setCart }) => {
       setCart(newCart);
     }
   };
+
   const addSingleItem = (product) => {
     setCart([...cart, { ...product }]);
   };
+
   const removeAllOfItem = (productId) => {
     setCart(cart.filter(item => item.id !== productId));
   };
@@ -41,7 +41,7 @@ const Cart = ({ cart, setCart }) => {
 
   const handleCheckout = () => {
     setCart([]);
-    navigate('/HomePage'); 
+    navigate('/HomePage');
   };
 
   return (
