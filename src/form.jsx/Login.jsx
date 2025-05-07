@@ -2,6 +2,7 @@ import { Card, CardHeader, CardBody, CardFooter, Typography, Input, Checkbox, Bu
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,15 +12,13 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/users");
-      const users = response.data;
-
+      const response = await axios.get("https://pointy-flame-methane.glitch.me/db.json");
+      const users = response.data.users;
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
-
       if (foundUser) {
-        navigate("/home");
+        navigate("/homePage");
       } else {
         setErrorMessage("Invalid email or password. Please try again.");
       }
@@ -39,19 +38,25 @@ const Login = () => {
           </Typography>
         </CardHeader>
         <CardBody className="flex flex-col gap-4 bg-white">
-          <Input
-            label="Email"
-            size="lg"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            label="Password"
-            size="lg"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="flex flex-col gap-4">
+            <Input
+              label="Email"
+              size="lg"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              labelProps={{ className: "text-sm text-gray-700 mb-1" }}
+              className="!border-gray-300"
+            />
+            <Input
+              label="Password"
+              size="lg"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              labelProps={{ className: "text-sm text-gray-700 mb-1" }}
+              className="!border-gray-300"
+            />
+          </div>
           <div className="-ml-2.5">
             <Checkbox
               label="Remember Me"
