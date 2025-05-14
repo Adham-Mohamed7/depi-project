@@ -10,10 +10,10 @@ const ProductsOverview = () => {
   const [productOverview, setProductOverview] = useState([]);
 
   const getProductOver = () => {
-    fetch("/db.json")
+    fetch("https://depis2back.vercel.app/api/products")
       .then((res) => res.json())
       .then((data) => {
-        setProductOverview(data.products);  
+        setProductOverview(data);  
       });
   };
 

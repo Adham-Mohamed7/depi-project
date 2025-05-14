@@ -35,7 +35,9 @@ const SignUp = () => {
     if (!isFormValid()) return;
 
     try {
-      const serverResponse = await axios.get("http://localhost:3000/users");
+
+      const serverResponse = await axios.get("https://run.mocky.io/v3/5b1bc361-e93e-42f8-aa62-1143281fbe39");
+
       const doesEmailAlreadyExist = serverResponse.data.some(
         (user) => user.email === emailAddress
       );
@@ -45,7 +47,7 @@ const SignUp = () => {
         return;
       }
 
-      await axios.post("http://localhost:3000/users", {
+      await axios.post("https://run.mocky.io/v3/5b1bc361-e93e-42f8-aa62-1143281fbe39", {
         userName,
         email: emailAddress,
         password: userPassword,

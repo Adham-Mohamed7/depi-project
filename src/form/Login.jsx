@@ -11,15 +11,18 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/users");
-      const users = response.data;
 
+
+      const response = await axios.get("https://pointy-flame-methane.glitch.me/db.json");
+ 
+      const users = response.data.users;
+  
       const foundUser = users.find(
         (user) => user.email === email && user.password === password
       );
 
       if (foundUser) {
-        navigate("/home");
+        navigate("/homePage");
       } else {
         setErrorMessage("Invalid email or password. Please try again.");
       }
