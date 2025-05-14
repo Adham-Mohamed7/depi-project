@@ -2,7 +2,7 @@ import React from 'react'
 
 const Cards = () => {
   return (
-    <div className='m-10 flex w-full flex-col md:flex-row flex-wrap gap-6 justify-center'>
+    <div className='m-10 flex  flex-col md:flex-row flex-wrap gap-6 justify-center'>
       
     
       <a className="group relative md:w-[400px] w-full flex flex-col border border-gray-200 rounded-lg px-8 pb-8 pt-72 max-w-lg ml-16 mx-auto mt-10 overflow-hidden">
