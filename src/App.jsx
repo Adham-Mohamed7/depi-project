@@ -7,6 +7,7 @@ import Home from "./Home";
 //import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Product from './Shopping/Product';
 import Cart from './Shopping/Cart';
+import ContactUS from "./contact page/contact";
 
 
 
@@ -17,6 +18,7 @@ const App = () => {
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/login" element={<Login />} />
       <Route path="/Home" element={<Home />} />
+        <Route path="/contact page" element={<ContactUS/>} />
     </Routes>
   );
 };

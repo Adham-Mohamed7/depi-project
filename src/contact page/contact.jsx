@@ -12,8 +12,9 @@
 //         setIsCartOpen(!isCartOpen);
 //     };
 
-//     return (
-    
+//    
+function ContactUS(){
+     return (
       <div className={`bg-gray-100 min-h-screen flex flex-col ${isCartOpen ? 'lg:mr-96' : ''} transition-margin duration-300 ease-in-out`}>
 
             {/* Top Bar */}
@@ -326,6 +327,6 @@
 
 
                            
-//               );
-//               };
-// export default  DashboardWithCart;
+              );
+              };
+export default ContactUS;
