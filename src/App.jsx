@@ -7,7 +7,6 @@ import DashBoard from './DashboardDesignAndView/DashBoard';
 import Product from './Shopping/Product';
 import Cart from './Shopping/Cart';
 import ContactUS from "./contact page/contact";
-import Cart from './Shopping/Cart'; 
 import Nav from './Nav';
 import Footer from './HomePage/Footer';
 
