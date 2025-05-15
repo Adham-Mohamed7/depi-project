@@ -28,7 +28,7 @@ import Footer from './HomePage/Footer';
 
   return (
     <div>
-      
+
       <Nav />
     <Routes>
 
@@ -37,9 +37,12 @@ import Footer from './HomePage/Footer';
       <Route path="/" element={<HomePage />} />
       <Route 
         path="/product" 
-        element={<Product cart={cart} setCart={setCart} products={products} />} 
+
+        element={<Product cart={cart} setCart={setCart} />} 
       />
+      
       <Route 
+
         path="/cart" 
         element={<Cart cart={cart} setCart={setCart} />} 
       />

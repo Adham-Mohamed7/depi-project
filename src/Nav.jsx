@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import {   FiUser, FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 import { CiLogin } from "react-icons/ci";
 import {Link} from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,6 +42,9 @@ const Nav = () => {
           </nav>
       
           <div className="hidden md:flex items-center space-x-4">
+            <Link to = "/Cart" className="text-gray-800 hover:text-blue-500 transition-colors">
+              <FaShoppingCart className="text-xl" />
+            </Link>
             <Link to = "/Login" className="text-gray-800 hover:text-blue-500 transition-colors">
               <CiLogin className="text-xl" />
             </Link> 
@@ -63,10 +67,13 @@ const Nav = () => {
             <Link to="/" className="text-gray-800 hover:text-blue-500 transition-colors py-2">Home</Link>
             <Link to='/Product' className="text-gray-800 hover:text-blue-500 transition-colors py-2">Shop</Link>
             <Link to="/contact" className="text-gray-800 hover:text-blue-500 transition-colors py-2">Contact</Link>
-            <div className="flex items-center space-x-4 pt-4">    
-              <button className="text-gray-800 hover:text-blue-500 transition-colors">
+            <div className="flex items-center space-x-4 pt-4"> 
+            <Link to = "/Cart" className="text-gray-800 hover:text-blue-500 transition-colors">
+              <FaShoppingCart className="text-xl" />
+            </Link> 
+              <Link to = "/Login" className="text-gray-800 hover:text-blue-500 transition-colors">
                 <CiLogin className="text-xl" />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
