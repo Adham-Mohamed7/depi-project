@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Typography, Input, Button } from "@material-tailwind/react";
+import { Card, CardHeader, CardBody, CardFooter, Typography, Input, Button } from "@material-tailwind/react"; 
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -9,6 +9,9 @@ const SignUp = () => {
   const [userPassword, setUserPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isUserCreatedSuccessfully, setIsUserCreatedSuccessfully] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const API_URL = "https://depis2back.vercel.app/api/users";
 
   const isFormValid = () => {
     if (!userName || !emailAddress || !userPassword) {
@@ -33,19 +36,10 @@ const SignUp = () => {
 
   const createNewUserAccount = async () => {
     if (!isFormValid()) return;
-
+    
+    setIsLoading(true);
     try {
-      const serverResponse = await axios.get("http://localhost:3000/users");
-      const doesEmailAlreadyExist = serverResponse.data.some(
-        (user) => user.email === emailAddress
-      );
-
-      if (doesEmailAlreadyExist) {
-        setErrorMessage("This email is already registered.");
-        return;
-      }
-
-      await axios.post("http://localhost:3000/users", {
+      const response = await axios.post(`${API_URL}/signup`, {
         userName,
         email: emailAddress,
         password: userPassword,
@@ -57,7 +51,18 @@ const SignUp = () => {
       setUserPassword("");
     } catch (error) {
       console.error("Error:", error);
-      setErrorMessage("Something went wrong. Please try again.");
+      
+      if (error.response) {
+        if (error.response.status === 400 && error.response.data.message === 'User already exists') {
+          setErrorMessage("This email is already registered.");
+        } else {
+          setErrorMessage(error.response.data.message || "Something went wrong. Please try again.");
+        }
+      } else {
+        setErrorMessage("Network error. Please check your connection and try again.");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,21 +74,29 @@ const SignUp = () => {
             Sign up and let the shopping begin!
           </Typography>
         </CardHeader>
-        <CardBody className="flex flex-col gap-4 bg-white">
+        <CardBody className="flex flex-col bg-white">
+          <Typography variant="small" color="black" className="mb-1 font-semibold">
+            User Name
+          </Typography>
           <Input
-            label="User Name"
             size="lg"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           />
+
+          <Typography variant="small" color="black" className="mt-4 mb-1 font-semibold">
+            Email
+          </Typography>
           <Input
-            label="Email"
             size="lg"
             value={emailAddress}
             onChange={(e) => setEmailAddress(e.target.value)}
           />
+
+          <Typography variant="small" color="black" className="mt-4 mb-1 font-semibold">
+            Password
+          </Typography>
           <Input
-            label="Password"
             size="lg"
             type="password"
             value={userPassword}
@@ -99,8 +112,9 @@ const SignUp = () => {
             fullWidth
             className="bg-[#D3D3FF] text-black capitalize font-bold text-lg"
             onClick={createNewUserAccount}
+            disabled={isLoading}
           >
-            Create Account
+            {isLoading ? "Creating Account..." : "Create Account"}
           </Button>
           <Typography variant="small" className="mt-6 flex justify-center">
             Already have an account?
