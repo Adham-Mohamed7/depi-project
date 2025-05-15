@@ -34,9 +34,8 @@ import Footer from './HomePage/Footer';
       <Route path="/Login" element={<Login />} />
       <Route path="/" element={<HomePage />} />
       <Route 
-        path="/product" 
-
-        element={<Product cart={cart} setCart={setCart} />} 
+           path="/product" 
+           element={<Product cart={cart} setCart={setCart} products={products} />} 
       />
       <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
       <Route path="/dashboard" element={<DashBoard />} />
