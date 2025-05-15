@@ -14,24 +14,21 @@ const App = () => {
 
   return (
     <div>
-      
+
       <Nav />
     <Routes>
 
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/Login" element={<Login />} />
-
-
-
       <Route path="/" element={<HomePage />} />
-      <Route 
+      {/* <Route 
         path="/product" 
         element={<Product cart={cart} setCart={setCart} />} 
-      />
-      <Route 
+      /> */}
+      {/* <Route 
         path="/cart" 
         element={<Cart cart={cart} setCart={setCart} />} 
-      />
+      /> */}
       <Route path="/dashboard" element={<DashBoard />} />
     </Routes>
     <Footer />
