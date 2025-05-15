@@ -14,10 +14,15 @@ const App = () => {
 
   return (
     <div>
+      
       <Nav />
     <Routes>
+
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/Login" element={<Login />} />
+
+
+
       <Route path="/" element={<HomePage />} />
       <Route 
         path="/product" 
