@@ -16,15 +16,13 @@ import Footer from './HomePage/Footer';
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('https://depis2back.vercel.app/api/products')
+    fetch("https://depis2back.vercel.app/api/products")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data); 
+        setProducts(data);
       })
-      .catch((err) => console.error('Error loading products:', err));
+      .catch((err) => console.error("Error loading products:", err));
   }, []);
-
-
 
   return (
     <div>
@@ -40,14 +38,8 @@ import Footer from './HomePage/Footer';
 
         element={<Product cart={cart} setCart={setCart} />} 
       />
-      
-      <Route 
-
-        path="/cart" 
-        element={<Cart cart={cart} setCart={setCart} />} 
-      />
+      <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
       <Route path="/dashboard" element={<DashBoard />} />
-
     </Routes>
     <Footer />
     </div>
