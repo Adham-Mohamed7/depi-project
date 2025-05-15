@@ -37,23 +37,15 @@ const Nav = () => {
             <Link href="#" className="text-gray-800 hover:text-blue-500 transition-colors">Home</Link>
             <Link to='/Product' className="text-gray-800 hover:text-blue-500 transition-colors">Shop</Link>
             <Link href="#" className="text-gray-800 hover:text-blue-500 transition-colors">Contact</Link>
-            <Link to="/DashBoard" className="text-gray-800 hover:text-blue-500 transition-colors">DashBoard</Link>
           </nav>
-
-          
+      
           <div className="hidden md:flex items-center space-x-4">
             <button className="text-gray-800 hover:text-blue-500 transition-colors">
               <FiSearch className="text-xl" />
             </button>
             <button className="text-gray-800 hover:text-blue-500 transition-colors">
               <FiUser className="text-xl" />
-            </button>
-            <button className="text-gray-800 hover:text-blue-500 transition-colors relative">
-              <FiShoppingBag className="text-xl" />
-              <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            </button> 
           </div>
 
           
@@ -73,21 +65,12 @@ const Nav = () => {
             <Link href="#" className="text-gray-800 hover:text-blue-500 transition-colors py-2">Home</Link>
             <Link to='/Product' className="text-gray-800 hover:text-blue-500 transition-colors py-2">Shop</Link>
             <Link href="#" className="text-gray-800 hover:text-blue-500 transition-colors py-2">Contact</Link>
-            <Link to="/DashBoard" className="text-gray-800 hover:text-blue-500 transition-colors">DashBoard</Link>
-
-            
             <div className="flex items-center space-x-4 pt-4">
               <button className="text-gray-800 hover:text-blue-500 transition-colors">
                 <FiSearch className="text-xl" />
               </button>
               <button className="text-gray-800 hover:text-blue-500 transition-colors">
                 <FiUser className="text-xl" />
-              </button>
-              <button className="text-gray-800 hover:text-blue-500 transition-colors relative">
-                <FiShoppingBag className="text-xl" />
-                <span className="absolute -top-2 -right-2 bg-bblue-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
-                </span>
               </button>
             </div>
           </div>
