@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import SignUp from "./form/SignUp";
-import Login from "./form/Login";
-import HomePage from "./HomePage/HomePage";
-import DashBoard from "./DashboardDesignAndView/DashBoard";
-import Product from "./Shopping/Product";
-
-import Cart from "./Shopping/Cart";
+import { useState,useEffect } from 'react';
+import { Routes, Route} from 'react-router-dom';
+import SignUp from './form/SignUp';
+import Login from './form/Login';
+import HomePage from './HomePage/HomePage';
+import DashBoard from './DashboardDesignAndView/DashBoard';
+import Product from './Shopping/Product';
+import Cart from './Shopping/Cart';
 import ContactUS from "./contact page/contact";
+import Nav from './Nav';
+import Footer from './HomePage/Footer';
 
-const App = () => {
+
+ const App = () => {
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -23,20 +25,24 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" />} />
-      <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/contact page" element={<ContactUS />} />
+    <div>
 
+      <Nav />
+    <Routes>
+
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/Login" element={<Login />} />
       <Route path="/" element={<HomePage />} />
-      <Route
-        path="/product"
-        element={<Product cart={cart} setCart={setCart} products={products} />}
+      <Route 
+        path="/product" 
+
+        element={<Product cart={cart} setCart={setCart} />} 
       />
       <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
       <Route path="/dashboard" element={<DashBoard />} />
     </Routes>
+    <Footer />
+    </div>
   );
 };
 
