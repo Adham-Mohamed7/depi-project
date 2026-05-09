@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
-const Product = ({ addToCart }) => {
+const Product = ({ cart, setCart }) => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+  const [quickView, setQuickView] = useState(null);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
+    fetch('https://fakestoreapi.com/products')
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error('Error loading products:', err));
@@ -17,11 +14,21 @@ const Product = ({ addToCart }) => {
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) setCart(JSON.parse(savedCart));
-  }, []);
+  }, [setCart]);
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
+
+  if (!products.length) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-7xl mx-auto text-center py-20">
+          <p className="text-gray-500">Loading products...</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleAddToCart = (product) => {
     const existingItem = cart.find(item => item.id === product.id);
@@ -39,14 +46,12 @@ const Product = ({ addToCart }) => {
     }
   };
 
-  const openQuickView = (product) => {
-    setSelectedProduct(product);
-    setIsQuickViewOpen(true);
+  const handleCloseQuickView = () => {
+    setQuickView(null);
   };
 
-  const closeQuickView = () => {
-    setIsQuickViewOpen(false);
-    setSelectedProduct(null);
+  const handleQuickView = (product) => {
+    setQuickView(product);
   };
 
   return (
@@ -54,27 +59,6 @@ const Product = ({ addToCart }) => {
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-[#D3D3FF]">Our Products</h1>
-          <Link to="/cart" className="relative">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-8 w-8 text-[#D3D3FF] hover:text-[#b8b8ff]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-            {cart.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-[#b8b8ff] text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                {cart.reduce((total, item) => total + item.quantity, 0)}
-              </span>
-            )}
-          </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -88,13 +72,13 @@ const Product = ({ addToCart }) => {
                 <p className="text-[#D3D3FF] font-bold mb-2">${product.price.toFixed(2)}</p>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors"
+                  className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors mb-2"
                 >
                   Add to Cart
                 </button>
                 <button
-                  onClick={() => openQuickView(product)}
-                  className="mt-2 w-full bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md hover:bg-[#D3D3FF] transition-colors"
+                  onClick={() => handleQuickView(product)}
+                  className="w-full bg-gray-200 hover:bg-gray-300 text-black py-2 px-4 rounded-md transition-colors"
                 >
                   Quick View
                 </button>
@@ -102,28 +86,25 @@ const Product = ({ addToCart }) => {
             </div>
           ))}
         </div>
-
-        {isQuickViewOpen && selectedProduct && (
-          <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-            <div className="bg-white p-8 rounded-lg max-w-md w-full">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-bold">{selectedProduct.title}</h2>
-                <button onClick={closeQuickView} className="text-gray-500 text-xl">&times;</button>
-              </div>
-              <img src={selectedProduct.image} alt={selectedProduct.title} className="w-full h-60 object-contain mb-4" />
-              <p className="text-gray-700 mb-4">{selectedProduct.description}</p>
-              <p className="font-bold text-[#D3D3FF]">${selectedProduct.price.toFixed(2)}</p>
-              <div className="mt-4">
-                <button
-                  onClick={() => {
-                    handleAddToCart(selectedProduct);
-                    closeQuickView();
-                  }}
-                  className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors"
-                >
-                  Add to Cart
-                </button>
-              </div>
+        {quickView && (
+          <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex justify-center items-center">
+            <div className="bg-[#F0F0FF] p-8 rounded-lg max-w-sm mx-auto">
+              <h2 className="text-2xl font-bold text-[#D3D3FF] mb-4">{quickView.title}</h2>
+              <img src={quickView.image} alt={quickView.title} className="w-full h-48 object-contain mb-4" />
+              <p className="text-gray-400 mb-4">{quickView.description}</p>
+              <p className="font-bold text-[#D3D3FF] mb-4">${quickView.price.toFixed(2)}</p>
+              <button
+                onClick={() => handleAddToCart(quickView)}
+                className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors"
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={handleCloseQuickView}
+                className="w-full mt-4 bg-gray-300 hover:bg-gray-400 text-white font-medium py-2 px-4 rounded-md transition-colors"
+              >
+                Close
+              </button>
             </div>
           </div>
         )}

@@ -20,7 +20,6 @@ const ProductsOverview = () => {
   useEffect(() => {
     getProductOver();
   }, []);
-
   return (
     <div>
       <h1 className="text-5xl font-bold m-10 text-neutral-900">PRODUCTS OVERVIEW</h1>
@@ -39,7 +38,8 @@ const ProductsOverview = () => {
               <Typography>${price}</Typography>
             </CardBody>
           </Card>
-        ))}
+        )
+        )}
       </div>
     </div>
   )

@@ -13,19 +13,14 @@ const Home = () => {
   return (
 
     <div >
-      <div>
-        <Nav/>   
-      </div>
+      
        <div> 
         <Carousel/>
       </div>
       <div>
         <Cards/>
       </div>
-      <ProductsOverview/>
-      <div>
-        <Footer/>
-      </div>
+      <ProductsOverview/>   
     </div> 
     
     
