@@ -6,6 +6,7 @@ const Cards = () => {
       
     
       <a className="group relative md:w-[400px] w-full flex flex-col border border-gray-200 rounded-lg px-8 pb-8 pt-72 max-w-lg ml-16 mx-auto mt-10 overflow-hidden">
+        
         <img src="/banner-01.jpg" className="absolute inset-0 h-full w-full object-cover" />
         <div className="bg-[rgba(103,117,214,0.8)] duration-300 opacity-0 group-hover:opacity-80 absolute w-full h-full top-0 left-0 z-50"></div>
         <div className="absolute top-5 left-5 z-50">
