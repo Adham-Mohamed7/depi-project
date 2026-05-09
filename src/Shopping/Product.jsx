@@ -1,19 +1,57 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
-const Product = ({ cart, setCart, products }) => {
+const Product = ({ cart, setCart }) => {
+  const [products, setProducts] = useState([]);
   const [quickView, setQuickView] = useState(null);
 
-  const handleQuickView = (product) => {
-    setQuickView(product);
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error('Error loading products:', err));
+  }, []);
+
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) setCart(JSON.parse(savedCart));
+  }, [setCart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
+
+  if (!products.length) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-7xl mx-auto text-center py-20">
+          <p className="text-gray-500">Loading products...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const handleAddToCart = (product) => {
+    const existingItem = cart.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      setCart(prevCart => 
+        prevCart.map(item => 
+          item.id === product.id 
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCart(prevCart => [...prevCart, { ...product, quantity: 1 }]);
+    }
   };
 
   const handleCloseQuickView = () => {
     setQuickView(null);
   };
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
+  const handleQuickView = (product) => {
+    setQuickView(product);
   };
   console.log(products);
   return (
@@ -74,8 +112,8 @@ const Product = ({ cart, setCart, products }) => {
                   ${quickView.price.toFixed(2)}
                 </p>
                 <button
-                  onClick={() => addToCart(quickView)}
-                  className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors"
+                  onClick={() => handleAddToCart(product)}
+                  className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors mb-2"
                 >
                   Add to Cart
                 </button>
@@ -89,6 +127,28 @@ const Product = ({ cart, setCart, products }) => {
             </div>
           )}
         </div>
+        {quickView && (
+          <div className="fixed inset-0 bg-gray-800 bg-opacity-70 flex justify-center items-center">
+            <div className="bg-[#F0F0FF] p-8 rounded-lg max-w-sm mx-auto">
+              <h2 className="text-2xl font-bold text-[#D3D3FF] mb-4">{quickView.title}</h2>
+              <img src={quickView.image} alt={quickView.title} className="w-full h-48 object-contain mb-4" />
+              <p className="text-gray-400 mb-4">{quickView.description}</p>
+              <p className="font-bold text-[#D3D3FF] mb-4">${quickView.price.toFixed(2)}</p>
+              <button
+                onClick={() => handleAddToCart(quickView)}
+                className="w-full bg-[#D3D3FF] hover:bg-[#b8b8ff] text-white font-medium py-2 px-4 rounded-md transition-colors"
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={handleCloseQuickView}
+                className="w-full mt-4 bg-gray-300 hover:bg-gray-400 text-white font-medium py-2 px-4 rounded-md transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

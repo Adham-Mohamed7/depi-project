@@ -12,7 +12,7 @@ const ViewProduct = () => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        "https://run.mocky.io/v3/695c748c-8be5-4603-9f05-5bcd465b6011"
+        "https://fakestoreapi.com/"
       );
 
       if (data && Array.isArray(data.products)) {
