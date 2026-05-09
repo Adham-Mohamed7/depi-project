@@ -15,12 +15,12 @@ const App = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch('https://depis2back.vercel.app/api/products')
+    fetch("https://depis2back.vercel.app/api/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
       })
-      .catch((err) => console.error('Error loading products:', err));
+      .catch((err) => console.error("Error loading products:", err));
   }, []);
 
   useEffect(() => {
